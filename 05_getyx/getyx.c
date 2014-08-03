@@ -1,12 +1,12 @@
 /*
  * =====================================================================================
  *
- *       Filename:  mvprintw.c
+ *       Filename:  getyx.c
  *
- *    Description:  demonstrating mvprintw method of ncurses lib
+ *    Description:  demonstrating getyx method of ncurses lib
  *
  *        Version:  1.0
- *        Created:  08/02/2014 08:29:16 PM
+ *        Created:  08/02/2014 10:05:03 PM
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -19,19 +19,19 @@
 
 int main() {
   int ch;
-  initscr();
-  cbreak();
-  noecho();
+  int y, x;
 
-  printw("Gimme a character");
+  initscr();
+  printw("Gimme a char dude/dudette");
   ch = getch();
   clear();
 
   int i = 0;
-  while (true) {
-    mvprintw(0 + i, 0 + i, "%c", ch);
+  while(true) {
+    getyx(stdscr, y, x);
+    mvprintw(0 + i, 0 + i, "(%d, %d)", x, y);
+    refresh();
     i++;
     getch();
   }
 }
-
